@@ -1,0 +1,7 @@
+# 
+---
+namespace: admin-fire-mozzo-ns
+image: ghcr.io/labeng/admin-fire-mozzo:latest
+replicas: 1
+name: admin-fire-mozzo
+host: mozzo.eng.aruba.it

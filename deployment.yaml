@@ -1,0 +1,83 @@
+apiVersion: deployment.krateo.io/v1alpha1
+kind: FireworksApp
+metadata:
+  labels:
+    crossplane.io/composite: mozzo-fireworksapp
+  name: mozzo-fireworksapp
+  uid: e28e5d2b-c801-48bb-a0d1-f7d96d994ec9
+spec:
+  compositionRef:
+    name: fireworksapp.deployment.krateo.io
+  compositionUpdatePolicy: Automatic
+  description: Fireworks App Deployment
+  icon: fa-solid fa-fire
+  links:
+  - icon: fa-brands fa-git
+    title: labeng/admin-fire-mozzo
+    url: https://github.com/labeng/admin-fire-mozzo
+  owner: mauro
+  plugins:
+  - endpointName: argocd
+    icon: fa-solid fa-diagram-project
+    name: resources
+    type: argocd
+    value: mozzo-fireworksapp
+  - endpointName: github
+    icon: fa-solid fa-book
+    name: documentation
+    type: doc
+    values:
+    - '[labeng][admin-fire-mozzo]README.md'
+  - icon: fa-brands fa-docker
+    name: kubernetes
+    type: kubernetes
+    value: deploymentId
+  - endpointName: github
+    icon: fa-solid fa-person-running
+    name: pipelines
+    type: pipeline
+    values:
+    - '[labeng][admin-fire-mozzo]Build Docker image for every commit'
+  resourceRefs:
+  - apiVersion: kubernetes.crossplane.io/v1alpha1
+    kind: ProviderConfig
+    name: mozzo-fireworksapp-provider-k8s-pc-in
+  - apiVersion: kubernetes.crossplane.io/v1alpha1
+    kind: Object
+    name: mozzo-fireworksapp-argocd-app-object
+  - apiVersion: git.krateo.io/v1alpha1
+    kind: ProviderConfig
+    name: mozzo-fireworksapp-provider-git-pc
+  - apiVersion: kubernetes.crossplane.io/v1alpha1
+    kind: Object
+    name: mozzo-fireworksapp-fireworksapp-values
+  - apiVersion: git.krateo.io/v1alpha1
+    kind: Repo
+    name: mozzo-fireworksapp-kcrxs
+  - apiVersion: github.krateo.io/v1alpha1
+    kind: ProviderConfig
+    name: mozzo-fireworksapp-provider-github-pc
+  - apiVersion: github.krateo.io/v1alpha1
+    kind: Repo
+    name: mozzo-fireworksapp-nxxg6
+  tags:
+  - fireworks
+  - template
+  - krateo
+  - katy perry
+  title: mozzo
+  values:
+    endpointName: svirgola
+    fromRepo:
+      organizationName: krateoplatformops
+      repositoryName: krateo-template-fireworksapp
+      schema: https
+    host: mozzo.eng.aruba.it
+    namespace: krateo-system
+    organizationName: labeng
+    replicas: 1
+    repositoryName: admin-fire-mozzo
+    toRepo:
+      organizationName: labeng
+      repositoryName: admin-fire-mozzo
+      schema: https
